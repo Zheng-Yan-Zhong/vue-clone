@@ -1,7 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Homepage from '../views/Homepage.vue';
 import Login from '../views/Login.vue';
-import Register from '../components/Register.vue';
+import Register from '../views/Register.vue';
+import NotFound from '../views/NotFound.vue';
+import Loading from '../views/Loading.vue';
 const routes = [
   {
     path: '/',
@@ -14,6 +16,14 @@ const routes = [
   {
     path: '/register',
     component: Register,
+  },
+  {
+    path: '/loading',
+    component: Loading,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: NotFound,
   },
 ];
 const router = createRouter({

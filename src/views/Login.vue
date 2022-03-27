@@ -19,7 +19,7 @@
         id="formGroupExampleInput2"
         placeholder="password"
       />
-      <button class="">login</button>
+      <button @click="loginFn()" class="">login</button>
       <router-link class="nav-link" to="/">back to homepage</router-link>
       <router-link class="nav-link" to="/register"
         >haven't account? click here to sign up</router-link
@@ -27,7 +27,18 @@
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import router from '@/router';
+
+function loginFn() {
+  router.push('/loading');
+  fetch('https://e-shop-tw.herokuapp.com/')
+    .then((res) => res.json())
+    .then((data) => localStorage.setItem('user', JSON.stringify(data)))
+    .then(() => router.push('/'))
+    .catch((err) => console.log(err));
+}
+</script>
 <style lang="scss">
 .login-container {
   padding: 1rem;
